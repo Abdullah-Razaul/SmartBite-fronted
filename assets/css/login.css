@@ -1,0 +1,114 @@
+/* Screenshot-like Login UI */
+
+.auth-center{
+  min-height: calc(100vh - 160px); /* header+footer space */
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding: 40px 0 60px;
+}
+
+.auth-card{
+  width: min(640px, 92vw);
+  background: #ffffff;
+  border: 1px solid rgba(0,0,0,.06);
+  border-radius: 18px;
+  padding: 44px 44px 22px;
+  box-shadow: 0 18px 40px rgba(16, 24, 40, 0.08);
+}
+
+.auth-title{
+  font-size: 42px;
+  line-height: 1.1;
+  margin: 0 0 10px;
+  color: #101828;
+  font-weight: 800;
+}
+
+.auth-sub{
+  margin: 0 0 22px;
+  color: #667085;
+  font-size: 18px;
+}
+
+.auth-form{
+  display:flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 6px;
+}
+
+.field label{
+  display:block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #344054;
+}
+
+.auth-input{
+  width: 100%;
+  border: 1px solid #e6ebf2;
+  background: #eef4ff;         /* light blue like screenshot */
+  border-radius: 14px;
+  padding: 14px 16px;
+  font-size: 16px;
+  outline: none;
+}
+
+.auth-input:focus{
+  border-color: rgba(245, 158, 11, 0.65);
+  box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.18);
+  background: #eef4ff;
+}
+
+.auth-btn{
+  margin-top: 6px;
+  width: 100%;
+  border: none;
+  border-radius: 999px;         /* pill button */
+  padding: 14px 18px;
+  font-size: 16px;
+  font-weight: 800;
+  cursor: pointer;
+  color: #1b1b1b;
+  background: linear-gradient(180deg, #f7c37d 0%, #e7a44c 100%);
+  box-shadow: 0 10px 22px rgba(231, 164, 76, 0.35);
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+
+.auth-btn:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 14px 28px rgba(231, 164, 76, 0.42);
+}
+
+.auth-btn:active{
+  transform: translateY(0px);
+}
+
+.auth-foot{
+  margin-top: 12px;
+  font-size: 14px;
+  color: #667085;
+}
+
+.auth-link{
+  margin-left: 6px;
+  font-weight: 800;
+  color: #b45309; /* warm */
+  text-decoration: none;
+}
+.auth-link:hover{ text-decoration: underline; }
+
+.auth-msg{
+  min-height: 18px;
+  margin-top: 4px;
+  font-size: 14px;
+}
+
+/* responsive */
+@media (max-width: 520px){
+  .auth-card{ padding: 28px 18px 18px; }
+  .auth-title{ font-size: 34px; }
+  .auth-sub{ font-size: 16px; }
+}

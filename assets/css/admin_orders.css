@@ -1,0 +1,9 @@
+.status-pill{
+  display:inline-flex;
+  align-items:center;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background:#f2f4f7;
+  border: 1px solid #e8edf5;
+  font-weight: 900;
+}

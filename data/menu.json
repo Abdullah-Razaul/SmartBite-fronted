@@ -1,0 +1,8 @@
+[
+  {"id":"m1","restaurant_id":"r1","name":"Classic Burger","price":120,"is_active":1,"image_url":""},
+  {"id":"m2","restaurant_id":"r1","name":"Cheese Fries","price":80,"is_active":1,"image_url":""},
+  {"id":"m3","restaurant_id":"r2","name":"Pepperoni Pizza","price":350,"is_active":1,"image_url":""},
+  {"id":"m4","restaurant_id":"r2","name":"Garlic Bread","price":90,"is_active":1,"image_url":""},
+  {"id":"m5","restaurant_id":"r3","name":"Chocolate Cake","price":150,"is_active":1,"image_url":""},
+  {"id":"m6","restaurant_id":"r4","name":"Lemon Soda","price":60,"is_active":1,"image_url":""}
+]
