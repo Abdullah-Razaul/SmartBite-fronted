@@ -3,21 +3,16 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Delivery Dashboard | SmartBite</title>
+  <title>Delivered Stats | SmartBite</title>
 
   <link rel="stylesheet" href="assets/css/base.css">
   <link rel="stylesheet" href="assets/css/delivery_portal.css">
 </head>
 <body>
 
-<!-- তোমার existing header/navbar (same) -->
 <header class="topbar">
   <div class="topbar-inner container">
-    <div class="brand">
-      <div class="logo-dot"></div>
-      <a class="brand-name" href="index.html">SmartBite</a>
-    </div>
-
+    <div class="brand"><div class="logo-dot"></div><a class="brand-name" href="index.html">SmartBite</a></div>
     <nav class="nav" id="sb-nav">
       <a class="nav-link" href="index.html">Home</a>
       <a class="nav-link" href="browse.html">Browse</a>
@@ -45,7 +40,6 @@
 <main class="container dp-wrap">
   <div class="dp-shell">
 
-    <!-- Sidebar -->
     <aside class="dp-side">
       <div class="dp-brand">
         <div class="dp-logo">🍔</div>
@@ -56,58 +50,37 @@
       </div>
 
       <nav class="dp-nav">
-        <a class="dp-link active" href="delivery_dashboard.html"><span class="dp-ico">🏠</span>Dashboard</a>
+        <a class="dp-link" href="delivery_dashboard.html"><span class="dp-ico">🏠</span>Dashboard</a>
         <a class="dp-link" href="delivery_orders.html"><span class="dp-ico">🧾</span>Orders</a>
-        <a class="dp-link" href="delivery_stats.html"><span class="dp-ico">📊</span>Delivered Stats</a>
+        <a class="dp-link active" href="delivery_stats.html"><span class="dp-ico">📊</span>Delivered Stats</a>
         <a class="dp-link" href="delivery_profile.html"><span class="dp-ico">👤</span>Profile</a>
         <a class="dp-link" href="#" id="dp-logout"><span class="dp-ico">🚪</span>Logout</a>
       </nav>
     </aside>
 
-    <!-- Main -->
     <section class="dp-main">
-      <div class="dp-top">
-        <div>
-          <h1 id="dp-welcome">Welcome, Rider</h1>
-          <div class="dp-sub">Last seen: just now</div>
-        </div>
+      <div class="dp-form-card" style="max-width:none;">
+        <h1 style="font-size:56px;margin:6px 0 6px;">Delivered Stats</h1>
+        <div class="sub">Last 14 days delivered orders.</div>
 
-        <div class="dp-search">
-          <input class="dp-input" placeholder="Search orders..." />
-        </div>
-      </div>
-
-      <div class="dp-cards">
-        <div class="dp-card">
-          <div class="k">Delivered</div>
-          <div class="v" id="dp-delivered">5</div>
-        </div>
-        <div class="dp-card">
-          <div class="k">Active Orders</div>
-          <div class="v" id="dp-active">1</div>
-        </div>
-        <div class="dp-card">
-          <div class="k">Earnings Today</div>
-          <div class="v" id="dp-earn">৳ 50</div>
-        </div>
-      </div>
-
-      <div class="dp-section">
-        <h2>Incoming Orders</h2>
-
-        <div class="dp-order">
-          <div>
-            <div class="title">Order #4 — Razaul Karim Abdullah</div>
-            <div class="meta">TO TO Company • cumilla,tomsombridge</div>
-          </div>
-          <div class="dp-actions">
-            <span class="dp-pill">Ready</span>
-            <button class="dp-btn" type="button">Update</button>
-          </div>
-        </div>
-
+        <table class="dp-table">
+          <thead>
+            <tr>
+              <th style="width:260px;">Date</th>
+              <th style="width:200px;">Delivered</th>
+              <th>Estimated Earnings</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>2026-01-09</td><td>1</td><td>৳ 30</td></tr>
+            <tr><td>2026-01-08</td><td>2</td><td>৳ 60</td></tr>
+            <tr><td>2026-01-06</td><td>1</td><td>৳ 30</td></tr>
+            <tr><td>2026-01-03</td><td>1</td><td>৳ 30</td></tr>
+          </tbody>
+        </table>
       </div>
     </section>
+
   </div>
 </main>
 
@@ -119,10 +92,6 @@
 
 <script src="js/app.js"></script>
 <script>
-  // demo: show rider name in welcome (works with your login.js localStorage)
-  const u = JSON.parse(localStorage.getItem("sb_user") || "null");
-  if(u?.name) document.getElementById("dp-welcome").textContent = `Welcome, ${u.name}`;
-
   document.getElementById("dp-logout")?.addEventListener("click",(e)=>{
     e.preventDefault();
     localStorage.removeItem("sb_user");

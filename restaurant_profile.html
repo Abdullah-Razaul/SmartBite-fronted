@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Restaurant Profile | SmartBite</title>
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/restaurant_portal.css">
+</head>
+<body>
+
+<!-- header (same as your project header) -->
+<header class="topbar">
+  <div class="topbar-inner container">
+    <div class="brand">
+      <div class="logo-dot"></div>
+      <a class="brand-name" href="index.html">SmartBite</a>
+    </div>
+    <nav class="nav" id="sb-nav">
+      <a class="nav-link" href="index.html">Home</a>
+      <a class="nav-link" href="browse.html">Browse</a>
+      <a class="nav-link" href="cart.html">Cart</a>
+      <a class="nav-link" href="orders.html">Orders</a>
+      <a class="nav-link" href="contact.html">Contact</a>
+
+      <span class="nav-user" id="sb-user-area" style="display:none; align-items:center; gap:10px;">
+        <span class="badge" id="sb-user-role">guest</span>
+        <span class="muted small" id="sb-user-name"></span>
+        <a class="nav-link" id="sb-admin-link" href="admin_dashboard.html" style="display:none;">Admin</a>
+        <a class="nav-link" id="sb-restaurant-link" href="restaurant_dashboard.html" style="display:none;">Restaurant</a>
+        <a class="nav-link" id="sb-delivery-link" href="delivery_dashboard.html" style="display:none;">Delivery</a>
+        <a class="nav-link" href="#" id="sb-logout">Logout</a>
+      </span>
+
+      <span class="nav-user" id="sb-guest-area" style="display:flex; align-items:center; gap:10px;">
+        <a class="nav-link" href="login.html">Login</a>
+        <a class="nav-link" href="register.html">Registration</a>
+      </span>
+    </nav>
+  </div>
+</header>
+
+<main class="container" style="padding:22px 0 44px;">
+  <div class="portal cardx">
+
+    <aside class="side">
+      <div class="title">My Restaurant</div>
+      <a href="restaurant_dashboard.html">Dashboard</a>
+      <a href="restaurant_orders.html">Orders</a>
+      <a href="restaurant_menu.html">Menu</a>
+      <a class="active" href="restaurant_profile.html">Profile</a>
+    </aside>
+
+    <section class="main-area">
+      <h1 class="big-title">Profile</h1>
+      <p class="muted">Update your restaurant details.</p>
+
+      <div class="cardx" style="margin-top:14px;">
+        <div style="display:grid; gap:14px;">
+          <div>
+            <div class="help" style="font-weight:900; margin-bottom:8px;">Restaurant Name</div>
+            <input class="inputx" id="p-name" placeholder="Restaurant name">
+          </div>
+
+          <div>
+            <div class="help" style="font-weight:900; margin-bottom:8px;">Category</div>
+            <input class="inputx" id="p-cat" placeholder="Food">
+          </div>
+
+          <div>
+            <div class="help" style="font-weight:900; margin-bottom:8px;">Address</div>
+            <input class="inputx" id="p-addr" placeholder="cumilla">
+          </div>
+
+          <div>
+            <div class="help" style="font-weight:900; margin-bottom:8px;">Promo Text</div>
+            <input class="inputx" id="p-promo" placeholder="Optional">
+          </div>
+
+          <button class="pill-primary" id="p-save" type="button" style="width:100%; padding:16px 18px;">
+            Save
+          </button>
+
+          <div id="p-msg" class="help" style="min-height:18px;"></div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="muted small">© <span id="sb-year"></span> SmartBite. All rights reserved.</div>
+  </div>
+</footer>
+
+<script src="js/app.js"></script>
+<script src="js/restaurant/guard.js"></script>
+<script>
+  // demo fill from logged-in restaurant name
+  const u = JSON.parse(localStorage.getItem("sb_user")||"null");
+  document.getElementById("p-name").value = u?.name || "TO TO Company";
+  document.getElementById("p-cat").value = "Food";
+  document.getElementById("p-addr").value = "cumilla";
+
+  document.getElementById("p-save").addEventListener("click", ()=>{
+    const payload = {
+      name: document.getElementById("p-name").value.trim(),
+      category: document.getElementById("p-cat").value.trim(),
+      address: document.getElementById("p-addr").value.trim(),
+      promo: document.getElementById("p-promo").value.trim()
+    };
+    localStorage.setItem("sb_rest_profile", JSON.stringify(payload));
+    document.getElementById("p-msg").textContent = "Saved (demo).";
+  });
+</script>
+</body>
+</html>

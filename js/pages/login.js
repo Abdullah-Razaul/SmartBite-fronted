@@ -38,3 +38,29 @@ document.getElementById("login-form")?.addEventListener("submit", function(e){
     else location.href = "index.html";
   }, 800);
 });
+
+// Demo credential "Use" buttons
+document.querySelectorAll(".demo-row .demo-fill").forEach(btn=>{
+  btn.addEventListener("click", ()=>{
+    const row = btn.closest(".demo-row");
+    document.getElementById("email").value = row.dataset.email;
+    document.getElementById("password").value = row.dataset.pass;
+    document.getElementById("password").focus();
+  });
+});
+
+// Copy all credentials
+document.getElementById("copy-demo")?.addEventListener("click", async ()=>{
+  const text =
+`Admin: admin@smartbite.com / admin123
+Customer: customer@smartbite.com / customer123
+Delivery: delivery@smartbite.com / delivery123
+Restaurant: restaurant@smartbite.com / restaurant123`;
+  try{
+    await navigator.clipboard.writeText(text);
+    const msg = document.getElementById("login-msg");
+    if(msg){ msg.textContent = "Demo credentials copied!"; msg.className="auth-msg ok"; }
+  }catch(e){
+    alert(text);
+  }
+});

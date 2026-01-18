@@ -65,6 +65,52 @@
 
       <div id="login-msg" class="auth-msg" aria-live="polite"></div>
     </form>
+        <div class="demo-creds">
+      <div class="demo-head">
+        <div>
+          <h3>Demo Login IDs</h3>
+          <p>Use these credentials to preview different dashboards (frontend only).</p>
+        </div>
+        <button class="demo-copy" type="button" id="copy-demo">Copy all</button>
+      </div>
+
+      <div class="demo-table" role="table" aria-label="Demo credentials">
+        <div class="demo-row demo-row-head" role="row">
+          <div role="columnheader">Role</div>
+          <div role="columnheader">Email</div>
+          <div role="columnheader">Password</div>
+          <div role="columnheader" class="demo-act">Action</div>
+        </div>
+
+        <div class="demo-row" role="row" data-email="admin@smartbite.com" data-pass="admin123">
+          <div class="demo-role"><span class="pill">Admin</span></div>
+          <div class="demo-val">admin@smartbite.com</div>
+          <div class="demo-val">admin123</div>
+          <div class="demo-act"><button class="demo-fill" type="button">Use</button></div>
+        </div>
+
+        <div class="demo-row" role="row" data-email="customer@smartbite.com" data-pass="customer123">
+          <div class="demo-role"><span class="pill">Customer</span></div>
+          <div class="demo-val">customer@smartbite.com</div>
+          <div class="demo-val">customer123</div>
+          <div class="demo-act"><button class="demo-fill" type="button">Use</button></div>
+        </div>
+
+        <div class="demo-row" role="row" data-email="delivery@smartbite.com" data-pass="delivery123">
+          <div class="demo-role"><span class="pill">Delivery</span></div>
+          <div class="demo-val">delivery@smartbite.com</div>
+          <div class="demo-val">delivery123</div>
+          <div class="demo-act"><button class="demo-fill" type="button">Use</button></div>
+        </div>
+
+        <div class="demo-row" role="row" data-email="restaurant@smartbite.com" data-pass="restaurant123">
+          <div class="demo-role"><span class="pill">Restaurant</span></div>
+          <div class="demo-val">restaurant@smartbite.com</div>
+          <div class="demo-val">restaurant123</div>
+          <div class="demo-act"><button class="demo-fill" type="button">Use</button></div>
+        </div>
+      </div>
+    </div>
 
     <div class="auth-foot">
       <span>No account?</span>

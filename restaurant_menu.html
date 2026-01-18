@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Restaurant Menu | SmartBite</title>
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/restaurant_portal.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner container">
+    <div class="brand"><div class="logo-dot"></div><a class="brand-name" href="index.html">SmartBite</a></div>
+    <nav class="nav" id="sb-nav">
+      <a class="nav-link" href="index.html">Home</a>
+      <a class="nav-link" href="browse.html">Browse</a>
+      <a class="nav-link" href="cart.html">Cart</a>
+      <a class="nav-link" href="orders.html">Orders</a>
+      <a class="nav-link" href="contact.html">Contact</a>
+
+      <span class="nav-user" id="sb-user-area" style="display:none; align-items:center; gap:10px;">
+        <span class="badge" id="sb-user-role">guest</span>
+        <span class="muted small" id="sb-user-name"></span>
+        <a class="nav-link" id="sb-admin-link" href="admin_dashboard.html" style="display:none;">Admin</a>
+        <a class="nav-link" id="sb-restaurant-link" href="restaurant_dashboard.html" style="display:none;">Restaurant</a>
+        <a class="nav-link" id="sb-delivery-link" href="delivery_dashboard.html" style="display:none;">Delivery</a>
+        <a class="nav-link" href="#" id="sb-logout">Logout</a>
+      </span>
+      <span class="nav-user" id="sb-guest-area" style="display:flex; align-items:center; gap:10px;">
+        <a class="nav-link" href="login.html">Login</a>
+        <a class="nav-link" href="register.html">Registration</a>
+      </span>
+    </nav>
+  </div>
+</header>
+
+<main class="container" style="padding:22px 0 44px;">
+  <div class="portal cardx">
+
+    <aside class="side">
+      <div class="title">My Restaurant</div>
+      <a href="restaurant_dashboard.html">Dashboard</a>
+      <a href="restaurant_orders.html">Orders</a>
+      <a class="active" href="restaurant_menu.html">Menu</a>
+      <a href="restaurant_profile.html">Profile</a>
+    </aside>
+
+    <section class="main-area">
+      <h1 class="big-title">Menu</h1>
+      <p class="muted">Add & manage menu items.</p>
+
+      <!-- Add item bar -->
+      <div class="cardx" style="margin-top:14px;">
+        <div style="display:grid; gap:12px;">
+          <input class="inputx" id="m-name" placeholder="Item name">
+
+          <div class="row">
+            <input class="inputx" id="m-price" placeholder="Price" inputmode="decimal">
+            <input class="inputx" id="m-photo" type="file" accept="image/*">
+            <button class="pill-primary" id="m-add" type="button">Add Item</button>
+          </div>
+
+          <div class="help">Photo optional • Max 2MB • jpg/png/webp</div>
+        </div>
+      </div>
+
+      <!-- Items table -->
+      <div class="cardx" style="margin-top:14px;">
+        <table class="tablex">
+          <thead>
+            <tr>
+              <th style="width:80px">ID</th>
+              <th style="width:110px">Photo</th>
+              <th>Name</th>
+              <th style="width:160px">Price</th>
+              <th style="width:110px">Active</th>
+              <th style="width:320px">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="menu-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="muted small">© <span id="sb-year"></span> SmartBite. All rights reserved.</div>
+  </div>
+</footer>
+
+<script src="js/app.js"></script>
+<script src="js/restaurant/guard.js"></script>
+<script>
+  // Demo storage
+  const KEY = "sb_rest_menu";
+  const seed = [
+    {id:7, name:"birani", price:80, active:true, photo:"assets/img/food1.jpg"},
+    {id:6, name:"Nodule's", price:30, active:true, photo:"assets/img/food2.jpg"},
+    {id:5, name:"Burger", price:60, active:true, photo:"assets/img/food3.jpg"}
+  ];
+
+  function load(){
+    const raw = localStorage.getItem(KEY);
+    return raw ? JSON.parse(raw) : seed;
+  }
+  function save(list){ localStorage.setItem(KEY, JSON.stringify(list)); }
+
+  function row(item){
+    return `
+      <tr>
+        <td>#${item.id}</td>
+        <td><img class="img-pill" src="${item.photo || ""}" alt=""></td>
+        <td><input class="inputx" data-k="name" data-id="${item.id}" value="${item.name}"></td>
+        <td><input class="inputx" data-k="price" data-id="${item.id}" value="${Number(item.price).toFixed(2)}"></td>
+        <td>${item.active ? "Yes" : "No"}</td>
+        <td>
+          <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+            <input class="inputx" style="max-width:210px" type="file" data-k="photo" data-id="${item.id}" accept="image/*">
+            <button class="pill-primary" data-act="save" data-id="${item.id}" type="button">Save</button>
+            <button class="pill-outline" data-act="toggle" data-id="${item.id}" type="button">${item.active ? "Disable" : "Enable"}</button>
+          </div>
+          <div class="help" style="margin-top:8px;">Upload a new photo to replace the old one.</div>
+        </td>
+      </tr>
+    `;
+  }
+
+  function render(){
+    const list = load();
+    const body = document.getElementById("menu-body");
+    body.innerHTML = list.map(row).join("");
+
+    body.querySelectorAll("button[data-act]").forEach(btn=>{
+      btn.addEventListener("click", ()=>{
+        const id = Number(btn.dataset.id);
+        let items = load();
+        const it = items.find(x=>x.id===id);
+
+        if(btn.dataset.act==="toggle"){
+          it.active = !it.active;
+          save(items); render();
+        }
+
+        if(btn.dataset.act==="save"){
+          // update text inputs
+          body.querySelectorAll(`input[data-id="${id}"][data-k="name"]`).forEach(i=>it.name=i.value.trim());
+          body.querySelectorAll(`input[data-id="${id}"][data-k="price"]`).forEach(i=>it.price=Number(i.value)||0);
+
+          // photo (demo: if chosen, show preview using objectURL)
+          const fileInput = body.querySelector(`input[type="file"][data-id="${id}"][data-k="photo"]`);
+          if(fileInput && fileInput.files && fileInput.files[0]){
+            it.photo = URL.createObjectURL(fileInput.files[0]);
+          }
+          save(items); render();
+        }
+      });
+    });
+  }
+
+  document.getElementById("m-add").addEventListener("click", ()=>{
+    const name = document.getElementById("m-name").value.trim();
+    const price = Number(document.getElementById("m-price").value)||0;
+    if(!name) return alert("Enter item name");
+
+    const items = load();
+    const nextId = Math.max(...items.map(x=>x.id)) + 1;
+
+    let photo = "";
+    const f = document.getElementById("m-photo").files?.[0];
+    if(f) photo = URL.createObjectURL(f);
+
+    items.unshift({id: nextId, name, price, active:true, photo});
+    save(items);
+
+    document.getElementById("m-name").value="";
+    document.getElementById("m-price").value="";
+    document.getElementById("m-photo").value="";
+    render();
+  });
+
+  render();
+</script>
+</body>
+</html>

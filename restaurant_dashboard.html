@@ -9,6 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/base.css">
   <link rel="stylesheet" href="assets/css/restaurant_dashboard.css">
+  <link rel="stylesheet" href="assets/css/restaurant_portal.css">
 </head>
 <body>
 <header class="topbar">
@@ -41,13 +42,56 @@
     </nav>
   </div>
 </header>
-<main class="container">
-  <div class="card" style="padding:18px; margin-top:18px;">
-    <h1 class="h1" style="margin-top:0;">Demo Dashboard</h1>
-    <p class="muted">This is a static frontend-only demo. No backend/database actions are connected.</p>
-    <p class="muted">You can still place demo orders from the public pages (stored in your browser).</p>
-  </div>
+<main class="portal">
+  <aside class="side">
+    <div class="title">My Restaurant</div>
+    <a class="active" href="restaurant_dashboard.html">Dashboard</a>
+    <a href="restaurant_orders.html">Orders</a>
+    <a href="restaurant_menu.html">Menu</a>
+    <a href="restaurant_profile.html">Profile</a>
+  </aside>
+
+  <section class="main-area">
+    <h1 class="big-title">Dashboard</h1>
+    <p class="muted">Welcome, <span id="rest-welcome">TO TO Company</span></p>
+
+    <div class="stats-grid" style="margin-top:14px">
+      <div class="stat"><div class="muted">Today's Orders</div><div class="stat-num" id="s-today">0</div></div>
+      <div class="stat"><div class="muted">Pending</div><div class="stat-num" id="s-pending">5</div></div>
+      <div class="stat"><div class="muted">Preparing</div><div class="stat-num" id="s-prep">0</div></div>
+      <div class="stat"><div class="muted">Ready</div><div class="stat-num" id="s-ready">1</div></div>
+    </div>
+
+    <div class="card" style="margin-top:18px; padding:18px; border-radius:18px;">
+      <h3 style="margin:0 0 12px; font-size:26px;">Live Orders</h3>
+      <table class="table">
+        <thead>
+          <tr>
+            <th style="width:120px">ID</th>
+            <th>Status</th>
+            <th>Items Total</th>
+            <th style="width:200px">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>#12</td>
+            <td><span class="status-pill">pending</span></td>
+            <td>৳ 80.00</td>
+            <td><a class="pill-outline" href="restaurant_orders.html">Manage</a></td>
+          </tr>
+          <tr>
+            <td>#11</td>
+            <td><span class="status-pill">pending</span></td>
+            <td>৳ 160.00</td>
+            <td><a class="pill-outline" href="restaurant_orders.html">Manage</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
 </main>
+
 <footer class="footer">
   <div class="container footer-inner">
     <div class="muted small">© <span id="sb-year"></span> SmartBite. All rights reserved.</div>

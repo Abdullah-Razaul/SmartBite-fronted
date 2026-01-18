@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Delivery Orders | SmartBite</title>
+
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/delivery_portal.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner container">
+    <div class="brand"><div class="logo-dot"></div><a class="brand-name" href="index.html">SmartBite</a></div>
+    <nav class="nav" id="sb-nav">
+      <a class="nav-link" href="index.html">Home</a>
+      <a class="nav-link" href="browse.html">Browse</a>
+      <a class="nav-link" href="cart.html">Cart</a>
+      <a class="nav-link" href="orders.html">Orders</a>
+      <a class="nav-link" href="contact.html">Contact</a>
+
+      <span class="nav-user" id="sb-user-area" style="display:none; align-items:center; gap:10px;">
+        <span class="badge" id="sb-user-role">guest</span>
+        <span class="muted small" id="sb-user-name"></span>
+        <a class="nav-link" id="sb-admin-link" href="admin_dashboard.html" style="display:none;">Admin</a>
+        <a class="nav-link" id="sb-restaurant-link" href="restaurant_dashboard.html" style="display:none;">Restaurant</a>
+        <a class="nav-link" id="sb-delivery-link" href="delivery_dashboard.html" style="display:none;">Delivery</a>
+        <a class="nav-link" href="#" id="sb-logout">Logout</a>
+      </span>
+
+      <span class="nav-user" id="sb-guest-area" style="display:flex; align-items:center; gap:10px;">
+        <a class="nav-link" href="login.html">Login</a>
+        <a class="nav-link" href="register.html">Registration</a>
+      </span>
+    </nav>
+  </div>
+</header>
+
+<main class="container dp-wrap">
+  <div class="dp-shell">
+
+    <aside class="dp-side">
+      <div class="dp-brand">
+        <div class="dp-logo">🍔</div>
+        <div>
+          <div class="dp-bname">SmartBite</div>
+          <div class="dp-brole">Delivery Rider</div>
+        </div>
+      </div>
+
+      <nav class="dp-nav">
+        <a class="dp-link" href="delivery_dashboard.html"><span class="dp-ico">🏠</span>Dashboard</a>
+        <a class="dp-link active" href="delivery_orders.html"><span class="dp-ico">🧾</span>Orders</a>
+        <a class="dp-link" href="delivery_stats.html"><span class="dp-ico">📊</span>Delivered Stats</a>
+        <a class="dp-link" href="delivery_profile.html"><span class="dp-ico">👤</span>Profile</a>
+        <a class="dp-link" href="#" id="dp-logout"><span class="dp-ico">🚪</span>Logout</a>
+      </nav>
+    </aside>
+
+    <section class="dp-main">
+      <div class="dp-form-card" style="max-width:none;">
+        <h1 style="font-size:56px;margin:6px 0 6px;">Orders</h1>
+        <div class="sub">Update order delivery status.</div>
+
+        <table class="dp-table">
+          <thead>
+            <tr>
+              <th style="width:70px;">ID</th>
+              <th style="width:210px;">Restaurant</th>
+              <th style="width:260px;">Customer</th>
+              <th style="width:140px;">Status</th>
+              <th>Address</th>
+              <th style="width:420px;">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>#10</td>
+              <td>TO TO Company</td>
+              <td>sabbir</td>
+              <td><span class="dp-badge">delivered</span></td>
+              <td class="help">cumilla,tomsombridge</td>
+              <td>
+                <div style="display:grid; gap:10px; max-width:420px;">
+                  <select class="dp-select">
+                    <option>Picked</option>
+                    <option>On the way</option>
+                    <option>Delivered</option>
+                  </select>
+                  <button class="dp-btn" type="button" style="width:160px;">Update</button>
+                </div>
+              </td>
+            </tr>
+
+            <tr>
+              <td>#6</td>
+              <td>TO TO Company</td>
+              <td>sabbir</td>
+              <td><span class="dp-badge">delivered</span></td>
+              <td class="help">cumilla,tomsombridge</td>
+              <td>
+                <div style="display:grid; gap:10px; max-width:420px;">
+                  <select class="dp-select">
+                    <option>Picked</option>
+                    <option>On the way</option>
+                    <option>Delivered</option>
+                  </select>
+                  <button class="dp-btn" type="button" style="width:160px;">Update</button>
+                </div>
+              </td>
+            </tr>
+
+            <tr>
+              <td>#4</td>
+              <td>TO TO Company</td>
+              <td>Razaul Karim Abdullah</td>
+              <td><span class="dp-badge">ready</span></td>
+              <td class="help">cumilla,tomsombridge</td>
+              <td>
+                <div style="display:grid; gap:10px; max-width:420px;">
+                  <select class="dp-select">
+                    <option>Picked</option>
+                    <option>On the way</option>
+                    <option>Delivered</option>
+                  </select>
+                  <button class="dp-btn" type="button" style="width:160px;">Update</button>
+                </div>
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="muted small">© <span id="sb-year"></span> SmartBite. All rights reserved.</div>
+  </div>
+</footer>
+
+<script src="js/app.js"></script>
+<script>
+  document.getElementById("dp-logout")?.addEventListener("click",(e)=>{
+    e.preventDefault();
+    localStorage.removeItem("sb_user");
+    location.href="login.html";
+  });
+</script>
+</body>
+</html>
